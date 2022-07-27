@@ -2,9 +2,13 @@
 一款超轻量级网页版即时聊天工具，包含服务端和客户端。跨平台，加密通讯，一键部署，开箱即用。
 
 快速启动： 
+
 export GOPROXY="https://goproxy.cn"
+
 go mod tidy
+
 go run ./
+
 或者在release中下载可执行文件，直接运行即可
 
 浏览器打开地址 http://localhost:5534

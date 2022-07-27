@@ -23,6 +23,11 @@ func (chatHandler) HandleRead(ctx netty.InboundContext, message netty.Message) {
 		logger.Error("read message error")
 		return
 	}
+	if str == "EOF" {
+		ch.outRoom(ctx.Channel().ID())
+		ctx.Close(nil)
+		return
+	}
 	if str == "" {
 		return
 	}

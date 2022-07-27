@@ -140,13 +140,24 @@ func (db *ChatDB) CreateRoom(room *RoomModel) {
 	db.conn.InsertOne(room)
 }
 
+func (db *ChatDB) IsUserInRoom(userId, roomId string) (bool, error) {
+	return db.conn.Where("room_id = ? and user_id = ?", roomId, userId).Table(&RoomUserModel{}).Exist()
+}
+
 func (db *ChatDB) JoinRoom(roomId, userId string) (err error) {
-	mp := &RoomUserModel{
-		RoomId:     roomId,
-		UserId:     userId,
-		CreateTime: time.Now(),
+	exist, err := db.IsUserInRoom(userId, roomId)
+	if err != nil {
+		return err
 	}
-	_, err = db.conn.Insert(mp)
+	if !exist {
+		mp := &RoomUserModel{
+			RoomId:     roomId,
+			UserId:     userId,
+			CreateTime: time.Now(),
+		}
+		_, err = db.conn.Insert(mp)
+	}
+
 	return
 }
 

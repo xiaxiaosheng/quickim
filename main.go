@@ -9,7 +9,6 @@ import (
 
 	"github.com/go-netty/go-netty"
 	"github.com/go-netty/go-netty-transport/websocket"
-	"github.com/go-netty/go-netty/codec/frame"
 	logger "github.com/opentrx/seata-golang/v2/pkg/util/log"
 )
 
@@ -47,7 +46,7 @@ func main() {
 	setupCodec := func(channel netty.Channel) {
 		channel.Pipeline().
 			// Exceeding maxFrameLength will throw exception handling
-			AddLast(frame.PacketCodec(1024)).
+			AddLast(PacketCodec(1024)).
 			// decode to map[string]interface{}
 			AddLast(StringCodec()).
 			// session recorder.

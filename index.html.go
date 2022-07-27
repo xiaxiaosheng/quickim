@@ -150,7 +150,6 @@ body{
 	<script src="https://cdn.bootcss.com/jsencrypt/3.0.0-beta.1/jsencrypt.js"></script>
 	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.2.0/jquery.js" type="text/javascript" charset="utf-8"></script>
 	<script src="https://cdn.bootcss.com/crypto-js/3.1.9-1/crypto-js.min.js"></script>
-	<script src="/coder.js"></script>
 	<script type="text/javascript">
 		var onlineList = [];
 		var totalOnline = 0;
